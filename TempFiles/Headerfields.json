@@ -1,0 +1,54 @@
+[
+  {
+    "id": "EmployeeId",
+    "type": "String",
+    "label": "Employee Id",
+    "editable": false
+  },
+  {
+    "id": "EmployeeType",
+    "type": "String",
+    "label": "Employee Type",
+    "editable": false,
+    "dropdown": {
+      "value1": "Contract",
+      "value2": "Full Time"
+    }
+  },
+  {
+    "id": "EmployeeName",
+    "type": "String",
+    "label": "Employee Name",
+    "editable": false
+  },
+  {
+    "id": "VendorNumber",
+    "type": "Number",
+    "editable": false,
+    "label": "Vendor Number"
+  },
+  {
+    "id": "VendorName",
+    "type": "String",
+    "editable": false,
+    "label": "Vendor Number"
+  },
+  {
+    "id": "createdDate",
+    "type": "Date",
+    "editable": false,
+    "label": "Created Date"
+  },
+  {
+    "id": "submissionDate",
+    "type": "Date",
+    "editable": false,
+    "label": "Submitted Date"
+  },
+  {
+    "id": "comments",
+    "type": "String",
+    "editable": true,
+    "label": "Comments"
+  }
+]

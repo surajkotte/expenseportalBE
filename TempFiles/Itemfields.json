@@ -1,0 +1,103 @@
+[
+  {
+    "id": "Department",
+    "type": "String",
+    "label": "Department",
+    "editable": true,
+    "dropdown": {
+      "value1": "Department1",
+      "value2": "Department2"
+    }
+  },
+  {
+    "id": "BillNo",
+    "type": "String",
+    "label": "Bill No",
+    "editable": true
+  },
+  {
+    "id": "Description",
+    "type": "String",
+    "label": "Description",
+    "editable": true
+  },
+  {
+    "id": "ExpenseType",
+    "type": "String",
+    "label": "Expense Type",
+    "editable": true,
+    "dropdown": {
+      "value1": "Travel",
+      "value2": "Accommodation",
+      "value3": "Meals",
+      "value4": "Miscellaneous"
+    }
+  },
+  {
+    "id": "ExpenseDate",
+    "type": "Date",
+    "label": "Expense Date",
+    "editable": true
+  },
+  {
+    "id": "AmountDocCurr",
+    "type": "Number",
+    "label": "Amount Doc Curr",
+    "editable": true
+  },
+  {
+    "id": "Currency",
+    "type": "String",
+    "label": "Currency",
+    "editable": true,
+    "dropdown": {
+      "value1": "USD",
+      "value2": "INR",
+      "value3": "EUR",
+      "value4": "GBP"
+    }
+  },
+  {
+    "id": "AmountLocalCurr",
+    "type": "Number",
+    "label": "Amount Local Curr",
+    "editable": false
+  },
+  {
+    "id": "ExchangeRate",
+    "type": "Number",
+    "label": "Exchange Rate",
+    "editable": false
+  },
+  {
+    "id": "OriginalBillAttach",
+    "type": "Boolean",
+    "label": "Original Bill Attach",
+    "editable": true,
+    "attachment": true
+  },
+  {
+    "id": "CostCenter",
+    "type": "String",
+    "label": "Cost Center",
+    "editable": false
+  },
+  {
+    "id": "GLAccount",
+    "type": "String",
+    "label": "G/L Account",
+    "editable": false
+  },
+  {
+    "id": "WBSElement",
+    "type": "String",
+    "label": "WBS Element",
+    "editable": false
+  },
+  {
+    "id": "InternalOrder",
+    "type": "String",
+    "label": "Internal Order",
+    "editable": false
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Manager",
+    "description": "Manager",
+    "createdAt": "2025-06-21T10:35:07.098Z",
+    "id": 1
+  },
+  {
+    "name": "Approver",
+    "description": "Can verify and approve User Expense",
+    "createdAt": "2025-06-21T10:35:31.702Z",
+    "id": 2
+  },
+  {
+    "name": "Approver1",
+    "description": "Can verify and approve User Expense upto 5k",
+    "createdAt": "2025-06-21T10:35:41.774Z",
+    "id": 3
+  },
+  {
+    "name": "TestRole",
+    "description": "Testing",
+    "createdAt": "2025-06-21T12:53:47.389Z",
+    "id": 4
+  },
+  {
+    "name": "Test User",
+    "description": "User to test info",
+    "createdAt": "2025-07-10T13:12:28.924Z",
+    "id": 5
+  }
+]
