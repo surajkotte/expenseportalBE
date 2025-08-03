@@ -1,1 +1,882 @@
-[{"id":1,"ItemInfo":[{"id":"EmployeeId","type":"String","label":"Employee Id","editable":false,"isVisible":true},{"id":"EmployeeType","type":"String","label":"Employee Type","editable":false,"dropdown":{"value1":"Contract","value2":"Full Time"},"isVisible":true},{"id":"EmployeeName","type":"String","label":"Employee Name","editable":false,"isVisible":false},{"id":"VendorNumber","type":"Number","editable":false,"label":"Vendor Number","isVisible":false},{"id":"VendorName","type":"String","editable":false,"label":"Vendor Number","isVisible":false},{"id":"createdDate","type":"Date","editable":false,"label":"Created Date","isVisible":false},{"id":"submissionDate","type":"Date","editable":false,"label":"Submitted Date","isVisible":true},{"id":"comments","type":"String","editable":true,"label":"Comments","isVisible":true}],"headerInfo":[{"id":"Department","type":"String","label":"Department","editable":true,"dropdown":{"value1":"Department1","value2":"Department2"},"isVisible":true},{"id":"BillNo","type":"String","label":"Bill No","editable":true,"isVisible":true},{"id":"Description","type":"String","label":"Description","editable":true,"isVisible":false},{"id":"ExpenseType","type":"String","label":"Expense Type","editable":true,"dropdown":{"value1":"Travel","value2":"Accommodation","value3":"Meals","value4":"Miscellaneous"},"isVisible":false},{"id":"ExpenseDate","type":"Date","label":"Expense Date","editable":true,"isVisible":false},{"id":"AmountDocCurr","type":"Number","label":"Amount Doc Curr","editable":true,"isVisible":false},{"id":"Currency","type":"String","label":"Currency","editable":true,"dropdown":{"value1":"USD","value2":"INR","value3":"EUR","value4":"GBP"},"isVisible":false},{"id":"AmountLocalCurr","type":"Number","label":"Amount Local Curr","editable":false,"isVisible":false},{"id":"ExchangeRate","type":"Number","label":"Exchange Rate","editable":false,"isVisible":true},{"id":"OriginalBillAttach","type":"Boolean","label":"Original Bill Attach","editable":true,"attachment":true,"isVisible":false},{"id":"CostCenter","type":"String","label":"Cost Center","editable":false,"isVisible":true},{"id":"GLAccount","type":"String","label":"G/L Account","editable":false,"isVisible":false},{"id":"WBSElement","type":"String","label":"WBS Element","editable":false,"isVisible":true},{"id":"InternalOrder","type":"String","label":"Internal Order","editable":false,"isVisible":false}]},{"id":2,"ItemInfo":[{"id":"EmployeeId","type":"String","label":"Employee Id","editable":false,"isVisible":false},{"id":"EmployeeType","type":"String","label":"Employee Type","editable":false,"dropdown":{"value1":"Contract","value2":"Full Time"},"isVisible":false},{"id":"EmployeeName","type":"String","label":"Employee Name","editable":false,"isVisible":false},{"id":"VendorNumber","type":"Number","editable":false,"label":"Vendor Number","isVisible":true},{"id":"VendorName","type":"String","editable":false,"label":"Vendor Number","isVisible":false},{"id":"createdDate","type":"Date","editable":false,"label":"Created Date","isVisible":false},{"id":"submissionDate","type":"Date","editable":false,"label":"Submitted Date","isVisible":false},{"id":"comments","type":"String","editable":true,"label":"Comments","isVisible":false}],"headerInfo":[{"id":"Department","type":"String","label":"Department","editable":true,"dropdown":{"value1":"Department1","value2":"Department2"},"isVisible":false},{"id":"BillNo","type":"String","label":"Bill No","editable":true,"isVisible":false},{"id":"Description","type":"String","label":"Description","editable":true,"isVisible":false},{"id":"ExpenseType","type":"String","label":"Expense Type","editable":true,"dropdown":{"value1":"Travel","value2":"Accommodation","value3":"Meals","value4":"Miscellaneous"},"isVisible":true},{"id":"ExpenseDate","type":"Date","label":"Expense Date","editable":true,"isVisible":true},{"id":"AmountDocCurr","type":"Number","label":"Amount Doc Curr","editable":true,"isVisible":false},{"id":"Currency","type":"String","label":"Currency","editable":true,"dropdown":{"value1":"USD","value2":"INR","value3":"EUR","value4":"GBP"},"isVisible":false},{"id":"AmountLocalCurr","type":"Number","label":"Amount Local Curr","editable":false,"isVisible":false},{"id":"ExchangeRate","type":"Number","label":"Exchange Rate","editable":false,"isVisible":false},{"id":"OriginalBillAttach","type":"Boolean","label":"Original Bill Attach","editable":true,"attachment":true,"isVisible":false},{"id":"CostCenter","type":"String","label":"Cost Center","editable":false,"isVisible":false},{"id":"GLAccount","type":"String","label":"G/L Account","editable":false,"isVisible":false},{"id":"WBSElement","type":"String","label":"WBS Element","editable":false,"isVisible":false},{"id":"InternalOrder","type":"String","label":"Internal Order","editable":false,"isVisible":false}]},{"id":3,"ItemInfo":[{"id":"EmployeeId","type":"String","label":"Employee Id","editable":false,"isVisible":true},{"id":"EmployeeType","type":"String","label":"Employee Type","editable":false,"dropdown":{"value1":"Contract","value2":"Full Time"},"isVisible":false},{"id":"EmployeeName","type":"String","label":"Employee Name","editable":false,"isVisible":false},{"id":"VendorNumber","type":"Number","editable":false,"label":"Vendor Number","isVisible":false},{"id":"VendorName","type":"String","editable":false,"label":"Vendor Number","isVisible":false},{"id":"createdDate","type":"Date","editable":false,"label":"Created Date","isVisible":false},{"id":"submissionDate","type":"Date","editable":false,"label":"Submitted Date","isVisible":true},{"id":"comments","type":"String","editable":true,"label":"Comments","isVisible":true}],"headerInfo":[{"id":"Department","type":"String","label":"Department","editable":true,"dropdown":{"value1":"Department1","value2":"Department2"},"isVisible":false},{"id":"BillNo","type":"String","label":"Bill No","editable":true,"isVisible":true},{"id":"Description","type":"String","label":"Description","editable":true,"isVisible":true},{"id":"ExpenseType","type":"String","label":"Expense Type","editable":true,"dropdown":{"value1":"Travel","value2":"Accommodation","value3":"Meals","value4":"Miscellaneous"},"isVisible":true},{"id":"ExpenseDate","type":"Date","label":"Expense Date","editable":true,"isVisible":false},{"id":"AmountDocCurr","type":"Number","label":"Amount Doc Curr","editable":true,"isVisible":false},{"id":"Currency","type":"String","label":"Currency","editable":true,"dropdown":{"value1":"USD","value2":"INR","value3":"EUR","value4":"GBP"},"isVisible":false},{"id":"AmountLocalCurr","type":"Number","label":"Amount Local Curr","editable":false,"isVisible":false},{"id":"ExchangeRate","type":"Number","label":"Exchange Rate","editable":false,"isVisible":false},{"id":"OriginalBillAttach","type":"Boolean","label":"Original Bill Attach","editable":true,"attachment":true,"isVisible":false},{"id":"CostCenter","type":"String","label":"Cost Center","editable":false,"isVisible":false},{"id":"GLAccount","type":"String","label":"G/L Account","editable":false,"isVisible":false},{"id":"WBSElement","type":"String","label":"WBS Element","editable":false,"isVisible":false},{"id":"InternalOrder","type":"String","label":"Internal Order","editable":false,"isVisible":false}]},{"id":4,"ItemInfo":[{"id":"EmployeeId","type":"String","label":"Employee Id","editable":false,"isVisible":false},{"id":"EmployeeType","type":"String","label":"Employee Type","editable":false,"dropdown":{"value1":"Contract","value2":"Full Time"},"isVisible":false},{"id":"EmployeeName","type":"String","label":"Employee Name","editable":false,"isVisible":false},{"id":"VendorNumber","type":"Number","editable":false,"label":"Vendor Number","isVisible":false},{"id":"VendorName","type":"String","editable":false,"label":"Vendor Number","isVisible":false},{"id":"createdDate","type":"Date","editable":false,"label":"Created Date","isVisible":false},{"id":"submissionDate","type":"Date","editable":false,"label":"Submitted Date","isVisible":false},{"id":"comments","type":"String","editable":true,"label":"Comments","isVisible":false}],"headerInfo":[{"id":"Department","type":"String","label":"Department","editable":true,"dropdown":{"value1":"Department1","value2":"Department2"},"isVisible":true},{"id":"BillNo","type":"String","label":"Bill No","editable":true,"isVisible":false},{"id":"Description","type":"String","label":"Description","editable":true,"isVisible":true},{"id":"ExpenseType","type":"String","label":"Expense Type","editable":true,"dropdown":{"value1":"Travel","value2":"Accommodation","value3":"Meals","value4":"Miscellaneous"},"isVisible":false},{"id":"ExpenseDate","type":"Date","label":"Expense Date","editable":true,"isVisible":true},{"id":"AmountDocCurr","type":"Number","label":"Amount Doc Curr","editable":true,"isVisible":false},{"id":"Currency","type":"String","label":"Currency","editable":true,"dropdown":{"value1":"USD","value2":"INR","value3":"EUR","value4":"GBP"},"isVisible":true},{"id":"AmountLocalCurr","type":"Number","label":"Amount Local Curr","editable":false,"isVisible":false},{"id":"ExchangeRate","type":"Number","label":"Exchange Rate","editable":false,"isVisible":true},{"id":"OriginalBillAttach","type":"Boolean","label":"Original Bill Attach","editable":true,"attachment":true,"isVisible":false},{"id":"CostCenter","type":"String","label":"Cost Center","editable":false,"isVisible":true},{"id":"GLAccount","type":"String","label":"G/L Account","editable":false,"isVisible":false},{"id":"WBSElement","type":"String","label":"WBS Element","editable":false,"isVisible":true},{"id":"InternalOrder","type":"String","label":"Internal Order","editable":false,"isVisible":false}]},{"id":5,"ItemInfo":[{"id":"Department","type":"String","label":"Department","editable":true,"dropdown":{"value1":"Department1","value2":"Department2"},"isVisible":false},{"id":"BillNo","type":"String","label":"Bill No","editable":true,"isVisible":false},{"id":"Description","type":"String","label":"Description","editable":true,"isVisible":false},{"id":"ExpenseType","type":"String","label":"Expense Type","editable":true,"dropdown":{"value1":"Travel","value2":"Accommodation","value3":"Meals","value4":"Miscellaneous"},"isVisible":false},{"id":"ExpenseDate","type":"Date","label":"Expense Date","editable":true,"isVisible":false},{"id":"AmountDocCurr","type":"Number","label":"Amount Doc Curr","editable":true,"isVisible":false},{"id":"Currency","type":"String","label":"Currency","editable":true,"dropdown":{"value1":"USD","value2":"INR","value3":"EUR","value4":"GBP"},"isVisible":false},{"id":"AmountLocalCurr","type":"Number","label":"Amount Local Curr","editable":false,"isVisible":false},{"id":"ExchangeRate","type":"Number","label":"Exchange Rate","editable":false,"isVisible":false},{"id":"OriginalBillAttach","type":"Boolean","label":"Original Bill Attach","editable":true,"attachment":true,"isVisible":false},{"id":"CostCenter","type":"String","label":"Cost Center","editable":false,"isVisible":true},{"id":"GLAccount","type":"String","label":"G/L Account","editable":false,"isVisible":true},{"id":"WBSElement","type":"String","label":"WBS Element","editable":false,"isVisible":true},{"id":"InternalOrder","type":"String","label":"Internal Order","editable":false,"isVisible":true}],"headerInfo":[{"id":"EmployeeId","type":"String","label":"Employee Id","editable":false,"isVisible":true},{"id":"EmployeeType","type":"String","label":"Employee Type","editable":false,"dropdown":{"value1":"Contract","value2":"Full Time"},"isVisible":true},{"id":"EmployeeName","type":"String","label":"Employee Name","editable":false,"isVisible":true},{"id":"VendorNumber","type":"Number","editable":false,"label":"Vendor Number","isVisible":false},{"id":"VendorName","type":"String","editable":false,"label":"Vendor Number","isVisible":false},{"id":"createdDate","type":"Date","editable":false,"label":"Created Date","isVisible":false},{"id":"submissionDate","type":"Date","editable":false,"label":"Submitted Date","isVisible":false},{"id":"comments","type":"String","editable":true,"label":"Comments","isVisible":false}]}]
+[
+  {
+    "id": 1,
+    "ItemInfo": [
+      {
+        "id": "EmployeeId",
+        "type": "String",
+        "label": "Employee Id",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "EmployeeType",
+        "type": "Dropdown",
+        "label": "Employee Type",
+        "editable": false,
+        "dropdown": { "value1": "Contract", "value2": "Full Time" },
+        "isVisible": true
+      },
+      {
+        "id": "EmployeeName",
+        "type": "String",
+        "label": "Employee Name",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "VendorNumber",
+        "type": "Number",
+        "editable": false,
+        "label": "Vendor Number",
+        "isVisible": false
+      },
+      {
+        "id": "VendorName",
+        "type": "String",
+        "editable": false,
+        "label": "Vendor Number",
+        "isVisible": false
+      },
+      {
+        "id": "createdDate",
+        "type": "Date",
+        "editable": false,
+        "label": "Created Date",
+        "isVisible": false
+      },
+      {
+        "id": "submissionDate",
+        "type": "Date",
+        "editable": false,
+        "label": "Submitted Date",
+        "isVisible": true
+      },
+      {
+        "id": "comments",
+        "type": "String",
+        "editable": true,
+        "label": "Comments",
+        "isVisible": true
+      }
+    ],
+    "headerInfo": [
+      {
+        "id": "Department",
+        "type": "Dropdown",
+        "label": "Department",
+        "editable": true,
+        "dropdown": { "value1": "Department1", "value2": "Department2" },
+        "isVisible": true
+      },
+      {
+        "id": "BillNo",
+        "type": "String",
+        "label": "Bill No",
+        "editable": true,
+        "isVisible": true
+      },
+      {
+        "id": "Description",
+        "type": "String",
+        "label": "Description",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "ExpenseType",
+        "type": "Dropdown",
+        "label": "Expense Type",
+        "editable": true,
+        "dropdown": {
+          "value1": "Travel",
+          "value2": "Accommodation",
+          "value3": "Meals",
+          "value4": "Miscellaneous"
+        },
+        "isVisible": false
+      },
+      {
+        "id": "ExpenseDate",
+        "type": "Date",
+        "label": "Expense Date",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "AmountDocCurr",
+        "type": "Number",
+        "label": "Amount Doc Curr",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "Currency",
+        "type": "Dropdown",
+        "label": "Currency",
+        "editable": true,
+        "dropdown": {
+          "value1": "USD",
+          "value2": "INR",
+          "value3": "EUR",
+          "value4": "GBP"
+        },
+        "isVisible": false
+      },
+      {
+        "id": "AmountLocalCurr",
+        "type": "Number",
+        "label": "Amount Local Curr",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "ExchangeRate",
+        "type": "Number",
+        "label": "Exchange Rate",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "OriginalBillAttach",
+        "type": "Boolean",
+        "label": "Original Bill Attach",
+        "editable": true,
+        "attachment": true,
+        "isVisible": false
+      },
+      {
+        "id": "CostCenter",
+        "type": "String",
+        "label": "Cost Center",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "GLAccount",
+        "type": "String",
+        "label": "G/L Account",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "WBSElement",
+        "type": "String",
+        "label": "WBS Element",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "InternalOrder",
+        "type": "String",
+        "label": "Internal Order",
+        "editable": false,
+        "isVisible": false
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "ItemInfo": [
+      {
+        "id": "EmployeeId",
+        "type": "String",
+        "label": "Employee Id",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "EmployeeType",
+        "type": "Dropdown",
+        "label": "Employee Type",
+        "editable": false,
+        "dropdown": { "value1": "Contract", "value2": "Full Time" },
+        "isVisible": false
+      },
+      {
+        "id": "EmployeeName",
+        "type": "String",
+        "label": "Employee Name",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "VendorNumber",
+        "type": "Number",
+        "editable": false,
+        "label": "Vendor Number",
+        "isVisible": true
+      },
+      {
+        "id": "VendorName",
+        "type": "String",
+        "editable": false,
+        "label": "Vendor Number",
+        "isVisible": false
+      },
+      {
+        "id": "createdDate",
+        "type": "Date",
+        "editable": false,
+        "label": "Created Date",
+        "isVisible": false
+      },
+      {
+        "id": "submissionDate",
+        "type": "Date",
+        "editable": false,
+        "label": "Submitted Date",
+        "isVisible": false
+      },
+      {
+        "id": "comments",
+        "type": "String",
+        "editable": true,
+        "label": "Comments",
+        "isVisible": false
+      }
+    ],
+    "headerInfo": [
+      {
+        "id": "Department",
+        "type": "Dropdows",
+        "label": "Department",
+        "editable": true,
+        "dropdown": { "value1": "Department1", "value2": "Department2" },
+        "isVisible": false
+      },
+      {
+        "id": "BillNo",
+        "type": "String",
+        "label": "Bill No",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "Description",
+        "type": "String",
+        "label": "Description",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "ExpenseType",
+        "type": "Dropdown",
+        "label": "Expense Type",
+        "editable": true,
+        "dropdown": {
+          "value1": "Travel",
+          "value2": "Accommodation",
+          "value3": "Meals",
+          "value4": "Miscellaneous"
+        },
+        "isVisible": true
+      },
+      {
+        "id": "ExpenseDate",
+        "type": "Date",
+        "label": "Expense Date",
+        "editable": true,
+        "isVisible": true
+      },
+      {
+        "id": "AmountDocCurr",
+        "type": "Number",
+        "label": "Amount Doc Curr",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "Currency",
+        "type": "Dropdown",
+        "label": "Currency",
+        "editable": true,
+        "dropdown": {
+          "value1": "USD",
+          "value2": "INR",
+          "value3": "EUR",
+          "value4": "GBP"
+        },
+        "isVisible": false
+      },
+      {
+        "id": "AmountLocalCurr",
+        "type": "Number",
+        "label": "Amount Local Curr",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "ExchangeRate",
+        "type": "Number",
+        "label": "Exchange Rate",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "OriginalBillAttach",
+        "type": "Boolean",
+        "label": "Original Bill Attach",
+        "editable": true,
+        "attachment": true,
+        "isVisible": false
+      },
+      {
+        "id": "CostCenter",
+        "type": "String",
+        "label": "Cost Center",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "GLAccount",
+        "type": "String",
+        "label": "G/L Account",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "WBSElement",
+        "type": "String",
+        "label": "WBS Element",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "InternalOrder",
+        "type": "String",
+        "label": "Internal Order",
+        "editable": false,
+        "isVisible": false
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "ItemInfo": [
+      {
+        "id": "EmployeeId",
+        "type": "String",
+        "label": "Employee Id",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "EmployeeType",
+        "type": "Dropdown",
+        "label": "Employee Type",
+        "editable": false,
+        "dropdown": { "value1": "Contract", "value2": "Full Time" },
+        "isVisible": false
+      },
+      {
+        "id": "EmployeeName",
+        "type": "String",
+        "label": "Employee Name",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "VendorNumber",
+        "type": "Number",
+        "editable": false,
+        "label": "Vendor Number",
+        "isVisible": false
+      },
+      {
+        "id": "VendorName",
+        "type": "String",
+        "editable": false,
+        "label": "Vendor Number",
+        "isVisible": false
+      },
+      {
+        "id": "createdDate",
+        "type": "Date",
+        "editable": false,
+        "label": "Created Date",
+        "isVisible": false
+      },
+      {
+        "id": "submissionDate",
+        "type": "Date",
+        "editable": false,
+        "label": "Submitted Date",
+        "isVisible": true
+      },
+      {
+        "id": "comments",
+        "type": "String",
+        "editable": true,
+        "label": "Comments",
+        "isVisible": true
+      }
+    ],
+    "headerInfo": [
+      {
+        "id": "Department",
+        "type": "Dropdown",
+        "label": "Department",
+        "editable": true,
+        "dropdown": { "value1": "Department1", "value2": "Department2" },
+        "isVisible": false
+      },
+      {
+        "id": "BillNo",
+        "type": "String",
+        "label": "Bill No",
+        "editable": true,
+        "isVisible": true
+      },
+      {
+        "id": "Description",
+        "type": "String",
+        "label": "Description",
+        "editable": true,
+        "isVisible": true
+      },
+      {
+        "id": "ExpenseType",
+        "type": "Dropdown",
+        "label": "Expense Type",
+        "editable": true,
+        "dropdown": {
+          "value1": "Travel",
+          "value2": "Accommodation",
+          "value3": "Meals",
+          "value4": "Miscellaneous"
+        },
+        "isVisible": true
+      },
+      {
+        "id": "ExpenseDate",
+        "type": "Date",
+        "label": "Expense Date",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "AmountDocCurr",
+        "type": "Number",
+        "label": "Amount Doc Curr",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "Currency",
+        "type": "Dropdown",
+        "label": "Currency",
+        "editable": true,
+        "dropdown": {
+          "value1": "USD",
+          "value2": "INR",
+          "value3": "EUR",
+          "value4": "GBP"
+        },
+        "isVisible": false
+      },
+      {
+        "id": "AmountLocalCurr",
+        "type": "Number",
+        "label": "Amount Local Curr",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "ExchangeRate",
+        "type": "Number",
+        "label": "Exchange Rate",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "OriginalBillAttach",
+        "type": "Boolean",
+        "label": "Original Bill Attach",
+        "editable": true,
+        "attachment": true,
+        "isVisible": false
+      },
+      {
+        "id": "CostCenter",
+        "type": "String",
+        "label": "Cost Center",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "GLAccount",
+        "type": "String",
+        "label": "G/L Account",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "WBSElement",
+        "type": "String",
+        "label": "WBS Element",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "InternalOrder",
+        "type": "String",
+        "label": "Internal Order",
+        "editable": false,
+        "isVisible": false
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "ItemInfo": [
+      {
+        "id": "EmployeeId",
+        "type": "String",
+        "label": "Employee Id",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "EmployeeType",
+        "type": "Dropdown",
+        "label": "Employee Type",
+        "editable": false,
+        "dropdown": { "value1": "Contract", "value2": "Full Time" },
+        "isVisible": false
+      },
+      {
+        "id": "EmployeeName",
+        "type": "String",
+        "label": "Employee Name",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "VendorNumber",
+        "type": "Number",
+        "editable": false,
+        "label": "Vendor Number",
+        "isVisible": false
+      },
+      {
+        "id": "VendorName",
+        "type": "String",
+        "editable": false,
+        "label": "Vendor Number",
+        "isVisible": false
+      },
+      {
+        "id": "createdDate",
+        "type": "Date",
+        "editable": false,
+        "label": "Created Date",
+        "isVisible": false
+      },
+      {
+        "id": "submissionDate",
+        "type": "Date",
+        "editable": false,
+        "label": "Submitted Date",
+        "isVisible": false
+      },
+      {
+        "id": "comments",
+        "type": "String",
+        "editable": true,
+        "label": "Comments",
+        "isVisible": false
+      }
+    ],
+    "headerInfo": [
+      {
+        "id": "Department",
+        "type": "Dropdown",
+        "label": "Department",
+        "editable": true,
+        "dropdown": { "value1": "Department1", "value2": "Department2" },
+        "isVisible": true
+      },
+      {
+        "id": "BillNo",
+        "type": "String",
+        "label": "Bill No",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "Description",
+        "type": "String",
+        "label": "Description",
+        "editable": true,
+        "isVisible": true
+      },
+      {
+        "id": "ExpenseType",
+        "type": "Dropdown",
+        "label": "Expense Type",
+        "editable": true,
+        "dropdown": {
+          "value1": "Travel",
+          "value2": "Accommodation",
+          "value3": "Meals",
+          "value4": "Miscellaneous"
+        },
+        "isVisible": false
+      },
+      {
+        "id": "ExpenseDate",
+        "type": "Date",
+        "label": "Expense Date",
+        "editable": true,
+        "isVisible": true
+      },
+      {
+        "id": "AmountDocCurr",
+        "type": "Number",
+        "label": "Amount Doc Curr",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "Currency",
+        "type": "Dropdown",
+        "label": "Currency",
+        "editable": true,
+        "dropdown": {
+          "value1": "USD",
+          "value2": "INR",
+          "value3": "EUR",
+          "value4": "GBP"
+        },
+        "isVisible": true
+      },
+      {
+        "id": "AmountLocalCurr",
+        "type": "Number",
+        "label": "Amount Local Curr",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "ExchangeRate",
+        "type": "Number",
+        "label": "Exchange Rate",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "OriginalBillAttach",
+        "type": "Boolean",
+        "label": "Original Bill Attach",
+        "editable": true,
+        "attachment": true,
+        "isVisible": false
+      },
+      {
+        "id": "CostCenter",
+        "type": "String",
+        "label": "Cost Center",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "GLAccount",
+        "type": "String",
+        "label": "G/L Account",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "WBSElement",
+        "type": "String",
+        "label": "WBS Element",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "InternalOrder",
+        "type": "String",
+        "label": "Internal Order",
+        "editable": false,
+        "isVisible": false
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "ItemInfo": [
+      {
+        "id": "Department",
+        "type": "Dropdown",
+        "label": "Department",
+        "editable": true,
+        "dropdown": { "value1": "Department1", "value2": "Department2" },
+        "isVisible": false
+      },
+      {
+        "id": "BillNo",
+        "type": "String",
+        "label": "Bill No",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "Description",
+        "type": "String",
+        "label": "Description",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "ExpenseType",
+        "type": "Dropdown",
+        "label": "Expense Type",
+        "editable": true,
+        "dropdown": {
+          "value1": "Travel",
+          "value2": "Accommodation",
+          "value3": "Meals",
+          "value4": "Miscellaneous"
+        },
+        "isVisible": false
+      },
+      {
+        "id": "ExpenseDate",
+        "type": "Date",
+        "label": "Expense Date",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "AmountDocCurr",
+        "type": "Number",
+        "label": "Amount Doc Curr",
+        "editable": true,
+        "isVisible": false
+      },
+      {
+        "id": "Currency",
+        "type": "Dropdown",
+        "label": "Currency",
+        "editable": true,
+        "dropdown": {
+          "value1": "USD",
+          "value2": "INR",
+          "value3": "EUR",
+          "value4": "GBP"
+        },
+        "isVisible": false
+      },
+      {
+        "id": "AmountLocalCurr",
+        "type": "Number",
+        "label": "Amount Local Curr",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "ExchangeRate",
+        "type": "Number",
+        "label": "Exchange Rate",
+        "editable": false,
+        "isVisible": false
+      },
+      {
+        "id": "OriginalBillAttach",
+        "type": "Boolean",
+        "label": "Original Bill Attach",
+        "editable": true,
+        "attachment": true,
+        "isVisible": false
+      },
+      {
+        "id": "CostCenter",
+        "type": "String",
+        "label": "Cost Center",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "GLAccount",
+        "type": "String",
+        "label": "G/L Account",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "WBSElement",
+        "type": "String",
+        "label": "WBS Element",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "InternalOrder",
+        "type": "String",
+        "label": "Internal Order",
+        "editable": false,
+        "isVisible": true
+      }
+    ],
+    "headerInfo": [
+      {
+        "id": "EmployeeId",
+        "type": "String",
+        "label": "Employee Id",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "EmployeeType",
+        "type": "Dropdown",
+        "label": "Employee Type",
+        "editable": false,
+        "dropdown": { "value1": "Contract", "value2": "Full Time" },
+        "isVisible": true
+      },
+      {
+        "id": "EmployeeName",
+        "type": "String",
+        "label": "Employee Name",
+        "editable": false,
+        "isVisible": true
+      },
+      {
+        "id": "VendorNumber",
+        "type": "Number",
+        "editable": false,
+        "label": "Vendor Number",
+        "isVisible": false
+      },
+      {
+        "id": "VendorName",
+        "type": "String",
+        "editable": false,
+        "label": "Vendor Name",
+        "isVisible": false
+      },
+      {
+        "id": "createdDate",
+        "type": "Date",
+        "editable": false,
+        "label": "Created Date",
+        "isVisible": false
+      },
+      {
+        "id": "submissionDate",
+        "type": "Date",
+        "editable": false,
+        "label": "Submitted Date",
+        "isVisible": false
+      },
+      {
+        "id": "comments",
+        "type": "TextArea",
+        "editable": true,
+        "label": "Comments",
+        "isVisible": false
+      }
+    ]
+  }
+]

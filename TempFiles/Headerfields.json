@@ -7,7 +7,7 @@
   },
   {
     "id": "EmployeeType",
-    "type": "String",
+    "type": "Dropdown",
     "label": "Employee Type",
     "editable": false,
     "dropdown": {
@@ -31,7 +31,7 @@
     "id": "VendorName",
     "type": "String",
     "editable": false,
-    "label": "Vendor Number"
+    "label": "Vendor Name"
   },
   {
     "id": "createdDate",
@@ -47,7 +47,7 @@
   },
   {
     "id": "comments",
-    "type": "String",
+    "type": "TextArea",
     "editable": true,
     "label": "Comments"
   }

@@ -9,7 +9,7 @@ const FiledsRouter = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-FiledsRouter.post("/mapFields/:id", async (req, res) => {
+FiledsRouter.post("/fieldmappings/:id", async (req, res) => {
   const { id } = req.params;
   const { HeaderFields, ItemFields } = req.body;
 
@@ -38,7 +38,7 @@ FiledsRouter.post("/mapFields/:id", async (req, res) => {
   }
 });
 
-FiledsRouter.get("/allFields/:id", async (req, res) => {
+FiledsRouter.get("/fieldmappings/:id", async (req, res) => {
   const { id } = req.params;
 
   try {

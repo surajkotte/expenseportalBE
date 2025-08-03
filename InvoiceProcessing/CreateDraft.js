@@ -77,6 +77,7 @@ function extractJsonBlock(text) {
 CreateDraft.post("/upload", upload.single("file"), async (req, res) => {
   try {
     const uploadedFile = req.file;
+    console.log("Uploaded file:", uploadedFile);
     const text = await extractTextFromPDF(uploadedFile.path);
     if (!uploadedFile) {
       return res.status(400).json({
@@ -121,6 +122,7 @@ ${ItemString}
       .replace(/```(?:json)?\s*([\s\S]*?)```/, "$1")
       .trim();
     // console.log(clean);
+    console.log(clean);
     const parsedJson = extractJsonBlock(clean);
     // let jsonObject;
     // try {
@@ -165,6 +167,7 @@ CreateDraft.post("/saveDraft", async (req, res) => {
       header,
       items,
       fileName,
+      status: "Draft",
       createdAt: new Date().toISOString(),
     };
     existingSavedData.push(newDraft);
@@ -173,6 +176,48 @@ CreateDraft.post("/saveDraft", async (req, res) => {
     res.status(200).json({
       messageType: "S",
       message: "Draft saved successfully.",
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ messageType: "E", message: err.message });
+  }
+});
+
+CreateDraft.post("/submitDraft", async (req, res) => {
+  try {
+    const { header, items, fileName } = req.body;
+
+    if (!header || !items || !fileName) {
+      return res.status(400).json({
+        messageType: "E",
+        message: "Header, items, and fileName are required.",
+      });
+    }
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
+    const dirPath = path.resolve(__dirname, "../TempFiles");
+    const filePath = path.join(dirPath, "submit_draft.json");
+    let existingSavedData = [];
+    if (fs.existsSync(filePath)) {
+      const fileContent = fs.readFileSync(filePath, "utf-8");
+      if (fileContent) {
+        existingSavedData = JSON.parse(fileContent);
+      }
+    }
+    const newDraft = {
+      header,
+      items,
+      fileName,
+      status: "Approval",
+      createdAt: new Date().toISOString(),
+    };
+    existingSavedData.push(newDraft);
+    fs.writeFileSync(filePath, JSON.stringify(existingSavedData, null, 2));
+
+    res.status(200).json({
+      messageType: "S",
+      message: "Draft submitted successfully.",
     });
   } catch (err) {
     console.error(err);

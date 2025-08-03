@@ -1,7 +1,7 @@
 [
   {
     "id": "Department",
-    "type": "String",
+    "type": "Dropdown",
     "label": "Department",
     "editable": true,
     "dropdown": {
@@ -23,7 +23,7 @@
   },
   {
     "id": "ExpenseType",
-    "type": "String",
+    "type": "Dropdown",
     "label": "Expense Type",
     "editable": true,
     "dropdown": {
@@ -47,7 +47,7 @@
   },
   {
     "id": "Currency",
-    "type": "String",
+    "type": "Dropdown",
     "label": "Currency",
     "editable": true,
     "dropdown": {
