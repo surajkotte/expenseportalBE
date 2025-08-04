@@ -2,6 +2,8 @@ import express from "express";
 import multer from "multer";
 import dotenv from "dotenv";
 import { PDFExtract } from "pdf.js-extract";
+import { v4 as uuidv4 } from "uuid";
+
 //import fs from "fs/promises";
 import { fileURLToPath } from "url";
 import fs from "fs";
@@ -167,7 +169,8 @@ CreateDraft.post("/saveDraft", async (req, res) => {
       header,
       items,
       fileName,
-      status: "Draft",
+      status: "1",
+      id: uuidv4(),
       createdAt: new Date().toISOString(),
     };
     existingSavedData.push(newDraft);
@@ -209,7 +212,7 @@ CreateDraft.post("/submitDraft", async (req, res) => {
       header,
       items,
       fileName,
-      status: "Approval",
+      status: "2",
       createdAt: new Date().toISOString(),
     };
     existingSavedData.push(newDraft);

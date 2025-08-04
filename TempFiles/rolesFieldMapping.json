@@ -14,7 +14,10 @@
         "type": "Dropdown",
         "label": "Employee Type",
         "editable": false,
-        "dropdown": { "value1": "Contract", "value2": "Full Time" },
+        "dropdown": {
+          "value1": "Contract",
+          "value2": "Full Time"
+        },
         "isVisible": true
       },
       {
@@ -66,7 +69,10 @@
         "type": "Dropdown",
         "label": "Department",
         "editable": true,
-        "dropdown": { "value1": "Department1", "value2": "Department2" },
+        "dropdown": {
+          "value1": "Department1",
+          "value2": "Department2"
+        },
         "isVisible": true
       },
       {
@@ -190,7 +196,10 @@
         "type": "Dropdown",
         "label": "Employee Type",
         "editable": false,
-        "dropdown": { "value1": "Contract", "value2": "Full Time" },
+        "dropdown": {
+          "value1": "Contract",
+          "value2": "Full Time"
+        },
         "isVisible": false
       },
       {
@@ -242,7 +251,10 @@
         "type": "Dropdows",
         "label": "Department",
         "editable": true,
-        "dropdown": { "value1": "Department1", "value2": "Department2" },
+        "dropdown": {
+          "value1": "Department1",
+          "value2": "Department2"
+        },
         "isVisible": false
       },
       {
@@ -366,7 +378,10 @@
         "type": "Dropdown",
         "label": "Employee Type",
         "editable": false,
-        "dropdown": { "value1": "Contract", "value2": "Full Time" },
+        "dropdown": {
+          "value1": "Contract",
+          "value2": "Full Time"
+        },
         "isVisible": false
       },
       {
@@ -418,7 +433,10 @@
         "type": "Dropdown",
         "label": "Department",
         "editable": true,
-        "dropdown": { "value1": "Department1", "value2": "Department2" },
+        "dropdown": {
+          "value1": "Department1",
+          "value2": "Department2"
+        },
         "isVisible": false
       },
       {
@@ -542,7 +560,10 @@
         "type": "Dropdown",
         "label": "Employee Type",
         "editable": false,
-        "dropdown": { "value1": "Contract", "value2": "Full Time" },
+        "dropdown": {
+          "value1": "Contract",
+          "value2": "Full Time"
+        },
         "isVisible": false
       },
       {
@@ -594,7 +615,10 @@
         "type": "Dropdown",
         "label": "Department",
         "editable": true,
-        "dropdown": { "value1": "Department1", "value2": "Department2" },
+        "dropdown": {
+          "value1": "Department1",
+          "value2": "Department2"
+        },
         "isVisible": true
       },
       {
@@ -711,8 +735,11 @@
         "type": "Dropdown",
         "label": "Department",
         "editable": true,
-        "dropdown": { "value1": "Department1", "value2": "Department2" },
-        "isVisible": false
+        "dropdown": {
+          "value1": "Department1",
+          "value2": "Department2"
+        },
+        "isVisible": true
       },
       {
         "id": "BillNo",
@@ -739,7 +766,7 @@
           "value3": "Meals",
           "value4": "Miscellaneous"
         },
-        "isVisible": false
+        "isVisible": true
       },
       {
         "id": "ExpenseDate",
@@ -766,7 +793,7 @@
           "value3": "EUR",
           "value4": "GBP"
         },
-        "isVisible": false
+        "isVisible": true
       },
       {
         "id": "AmountLocalCurr",
@@ -832,7 +859,10 @@
         "type": "Dropdown",
         "label": "Employee Type",
         "editable": false,
-        "dropdown": { "value1": "Contract", "value2": "Full Time" },
+        "dropdown": {
+          "value1": "Contract",
+          "value2": "Full Time"
+        },
         "isVisible": true
       },
       {
