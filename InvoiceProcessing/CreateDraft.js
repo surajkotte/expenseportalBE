@@ -95,7 +95,7 @@ CreateDraft.post("/upload", upload.single("file"), async (req, res) => {
     // Use Gemini to analyze the PDF content
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    const prompt = `Extract structured data from the following text. Translate any non-English field names to English. Then, map the extracted data to the corresponding JSON structure using the provided field definitions.
+    const prompt = `Extract structured data from the following text. Translate any non-English field names to English. Then, map the extracted data to the corresponding JSON structure using the provided field definitions and return in JSON Format
 
 - Use the following string as the source text: 
 
@@ -113,19 +113,39 @@ ${ItemString}
 3. Map the extracted values to the correct fields from ${HeaderString} and ${ItemString} `; // Truncate to 10k chars
 
     /** Gemini response */
-    const result = await model.generateContent(prompt);
+    // const result = await model.generateContent(prompt);
 
     /**Anthropic response */
-    // const result = await getClaudeResponse(prompt);
+    const result = await getClaudeResponse(prompt);
+    const rawText = result[0].text;
+    console.log("rawtext");
+    console.log(rawText);
+    const jsonMatch = rawText.match(/```json([\s\S]*?)```/);
+    console.log("jsonmatch");
+    console.log(jsonMatch);
+
+    // Parse the JSON
+    let parsedJSON;
+    if (jsonMatch && jsonMatch[1]) {
+      try {
+        parsedJSON = JSON.parse(jsonMatch[1]);
+        console.log("✅ Parsed JSON object:", parsedJSON);
+      } catch (error) {
+        console.error("❌ Error parsing JSON:", error.message);
+      }
+    } else {
+      console.error("❌ JSON block not found in text.");
+    }
     // console.log(result);
-    const response = await result.response;
-    const geminiOutput = response.text();
-    const clean = geminiOutput
-      .replace(/```(?:json)?\s*([\s\S]*?)```/, "$1")
-      .trim();
+    // const geminiOutput = response.text();
+    // console.log("gemini output");
+    // console.log(geminiOutput);
+    // const clean = geminiOutput
+    //   .replace(/```(?:json)?\s*([\s\S]*?)```/, "$1")
+    //   .trim();
+    // // console.log(clean);
     // console.log(clean);
-    console.log(clean);
-    const parsedJson = extractJsonBlock(clean);
+    // const parsedJson = extractJsonBlock(clean);
     // let jsonObject;
     // try {
     //   jsonObject = JSON.parse(clean);
@@ -134,7 +154,7 @@ ${ItemString}
     // }
     res.status(200).json({
       messageType: "S",
-      data: parsedJson,
+      data: parsedJSON,
       fileName: req.file.filename,
     });
   } catch (err) {

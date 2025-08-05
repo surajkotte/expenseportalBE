@@ -15,6 +15,7 @@ import DraftRouter from "./Drafts/Draft.js";
 import { fileURLToPath } from "url";
 import { router as put_router } from "./Routes/put_route.js";
 import { router as get_router } from "./Routes/get_routes.js";
+import { router as post_router } from "./Routes/post_route.js";
 
 const app = express();
 const agent = new Agent({ rejectUnauthorized: false });
@@ -36,6 +37,7 @@ app.use("/draft", CreateDraftRouter);
 //app.use("/api", DraftRouter);
 app.use("/api", put_router);
 app.use("/api", get_router);
+app.use("/api", post_router);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/files", express.static(path.join(__dirname, "uploads")));
