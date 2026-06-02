@@ -121,7 +121,7 @@ CreateDraft.post("/upload", upload.single("file"), async (req, res) => {
     }
     // const extractedText = text;
 
-    const prompt = `Extract structured data from the following text. Translate any non-English field names to English. Then, map the extracted data to the corresponding JSON structure using the provided field definitions.
+    const prompt = `Extract structured data from the following text. Translate any non-English field names to English. Then, map the extracted data to the corresponding JSON structure using the provided field definitions and return in JSON Format
 
 - Use the following string as the source text: 
 ###IMPORTANT Provide output in JSON format only, without any explanations or additional text. The JSON should have two main sections: **Header** and **Items**.
@@ -150,7 +150,7 @@ ${ItemString}
     }
     res.status(200).json({
       messageType: "S",
-      data: parsedJson,
+      data: parsedJSON,
       fileName: req.file.filename,
     });
   } catch (err) {
