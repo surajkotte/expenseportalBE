@@ -3,7 +3,6 @@ import multer from "multer";
 import dotenv from "dotenv";
 import { PDFExtract } from "pdf.js-extract";
 import { v4 as uuidv4 } from "uuid";
-
 //import fs from "fs/promises";
 import { fileURLToPath } from "url";
 import fs from "fs";
@@ -28,16 +27,16 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
-
-async function getClaudeResponse(prompt) {
+async function getClaudeResponse(prompt, contentBlocks) {
   try {
     const response = await anthropic.messages.create({
       model: "claude-sonnet-4-20250514",
       max_tokens: 20000,
       temperature: 1,
-      messages: [{ role: "user", content: prompt }],
+      system: prompt,
+      messages: [{ role: "user", content: contentBlocks }],
     });
-    return response.content;
+    return response.content[0].text;
   } catch (error) {
     console.error("Error communicating with Claude:", error);
     return null;
@@ -61,7 +60,6 @@ const extractTextFromPDF = async (filePath) => {
 };
 
 function extractJsonBlock(text) {
-  // Regex to extract JSON between `{` and matching `}`
   const jsonMatch = text.match(/{[\s\S]*?"Items":\s*\[[\s\S]*?\][\s\S]*?}/);
 
   if (!jsonMatch) {
@@ -79,27 +77,54 @@ function extractJsonBlock(text) {
 CreateDraft.post("/upload", upload.single("file"), async (req, res) => {
   try {
     const uploadedFile = req.file;
-    console.log("Uploaded file:", uploadedFile);
-    const text = await extractTextFromPDF(uploadedFile.path);
     if (!uploadedFile) {
       return res.status(400).json({
         messageType: "E",
         message: "No file uploaded",
       });
     }
+    const fileBuffer = fs.readFileSync(uploadedFile.path);
+    let rawText = "";
+    let contentBlocks = [];
+    let ext = path.extname(uploadedFile.originalname).toLowerCase();
+    let mediaType;
 
-    // Read and extract text from PDF
-    //const fileBuffer = await fs.readFile(uploadedFile.path);
-    const extractedText = text;
-
-    // Use Gemini to analyze the PDF content
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    switch (ext) {
+      case ".pdf":
+        mediaType = "application/pdf";
+        break;
+      case ".xml":
+        mediaType = "application/xml";
+        break;
+      case ".txt":
+        mediaType = "text/plain";
+        break;
+      case ".docx":
+        mediaType =
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+        break;
+      default:
+        return res.status(400).json({ error: "Unsupported file type" });
+    }
+    if (ext === ".xml" || ext === ".txt") {
+      rawText = fileBuffer.toString("utf-8");
+      contentBlocks.push({
+        type: "text",
+        text: `Source ${ext.toUpperCase()} content:\n\n${rawText}`,
+      });
+    } else {
+      const base64Data = fileBuffer.toString("base64");
+      contentBlocks.push({
+        type: "document",
+        source: { type: "base64", media_type: mediaType, data: base64Data },
+      });
+    }
+    // const extractedText = text;
 
     const prompt = `Extract structured data from the following text. Translate any non-English field names to English. Then, map the extracted data to the corresponding JSON structure using the provided field definitions.
 
 - Use the following string as the source text: 
-
-${extractedText.substring(0, 10000000)}
+###IMPORTANT Provide output in JSON format only, without any explanations or additional text. The JSON should have two main sections: **Header** and **Items**.
 
 - Use this string to determine the correct field names for the **Header** section:  
 ${HeaderString}
@@ -110,28 +135,19 @@ ${ItemString}
 **Instructions:**
 1. Identify and extract relevant fields from the source text.
 2. Translate field names into English where necessary.
-3. Map the extracted values to the correct fields from ${HeaderString} and ${ItemString} `; // Truncate to 10k chars
+3. Map the extracted values to the correct fields from ${HeaderString} and ${ItemString} and provide output as JSON`; // Truncate to 10k chars
 
-    /** Gemini response */
-    const result = await model.generateContent(prompt);
-
-    /**Anthropic response */
-    // const result = await getClaudeResponse(prompt);
-    // console.log(result);
-    const response = await result.response;
-    const geminiOutput = response.text();
-    const clean = geminiOutput
-      .replace(/```(?:json)?\s*([\s\S]*?)```/, "$1")
-      .trim();
-    // console.log(clean);
-    console.log(clean);
-    const parsedJson = extractJsonBlock(clean);
-    // let jsonObject;
-    // try {
-    //   jsonObject = JSON.parse(clean);
-    // } catch (err) {
-    //   throw new Error("Failed to parse JSON:");
-    // }
+    const result = await getClaudeResponse(prompt, contentBlocks);
+    const jsonMatch = result.match(/```json([\s\S]*?)```/);
+    const jsonObject = jsonMatch ? JSON.parse(jsonMatch[1]) : {};
+    console.log("Extracted JSON Object:", jsonObject);
+    const clean = result.replace(/```(?:json)?\s*([\s\S]*?)```/, "$1").trim();
+    let parsedJson;
+    try {
+      parsedJson = JSON.parse(clean);
+    } catch (err) {
+      throw new Error("Failed to parse JSON:");
+    }
     res.status(200).json({
       messageType: "S",
       data: parsedJson,

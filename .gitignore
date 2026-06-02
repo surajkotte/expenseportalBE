@@ -2,3 +2,13 @@
 node_modules
 dist
 coverage
+uploads
+logs
+.Ds_Store
+.env.local
+.TempFiles
+.test
+.AdminRole
+TempFiles/rolesFieldMapping.json
+TempFiles/save_draft.json
+TempFiles/submit_draft.json

@@ -1,20 +1,26 @@
 import express from "express";
-const router = express.Router();
-import { FileSystem } from "../Database/FileSystem.js";
-
-router.get(
-  "/drafts",
-  (req, res, next) => {
-    next();
+import SQLFile from "../Database/SQLFile.js";
+const get_router = express.Router();
+get_router.get(
+  "/admin/configfields",
+  async (req, res, next) => {
+    try {
+      next();
+    } catch (error) {
+      next(error);
+    }
   },
-  FileSystem.getDrafts
+  SQLFile.getConfigFields,
 );
-
-router.get(
-  "/approvalitems",
-  (req, res, next) => {
-    next();
+get_router.get(
+  "/draft/draftfields",
+  async (req, res, next) => {
+    try {
+      next();
+    } catch (error) {
+      next(error);
+    }
   },
-  FileSystem.getApprovalWorkItems
+  SQLFile.getDraftFields,
 );
-export { router };
+export default get_router;

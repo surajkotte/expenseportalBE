@@ -753,7 +753,7 @@
         "type": "String",
         "label": "Description",
         "editable": true,
-        "isVisible": false
+        "isVisible": true
       },
       {
         "id": "ExpenseType",
