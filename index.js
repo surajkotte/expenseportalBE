@@ -13,9 +13,9 @@ import FiledsRouter from "./AdminRole/FieldMappings.js";
 // import CreateDraftRouter from "./InvoiceProcessing/CreateDraft.js";
 import DraftRouter from "./Drafts/Draft.js";
 import { fileURLToPath } from "url";
-import { router as put_router } from "./Routes/put_route.js";
-import get_router from "./Routes/get_routes.js";
-import post_router from "./Routes/post_route.js";
+import { router as put_router } from "./routes/put_route.js";
+import get_router from "./routes/get_routes.js";
+import post_router from "./routes/post_route.js";
 import dbManager from "./Database/SQLConnection.js";
 
 async function initializeDatabase() {
