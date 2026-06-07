@@ -133,7 +133,7 @@ export const SQLFile = {
   },
   async uploadExpenseFile(req, res, next) {
     try {
-      const uploadedFile = req.file;
+      const uploadedFile = req.files[0];
       if (!uploadedFile) {
         return res.status(400).json({
           messageType: "E",
@@ -255,11 +255,105 @@ ${ItemString}
       res.status(200).json({
         messageType: "S",
         data: { dynamic_header_data, dynamic_items_data },
-        fileName: req.file.filename,
+        fileName: req.files[0].filename,
       });
     } catch (err) {
       console.error(err);
       res.status(500).json({ messageType: "E", message: err.message });
+    }
+  },
+  async upload_to_ai(filename, contenttype, filedata) {
+    try {
+      let contentBlocks = [];
+      if (!filename || !filedata) {
+        throw new Error("No data found");
+      }
+      contentBlocks.push({
+        type: "document",
+        source: { type: "base64", media_type: contenttype, data: filedata },
+      });
+      const draft_fields_response = await dbManager.read("config_fields");
+      const fields_data = draft_fields_response.map((field) => ({
+        id: field.id,
+        field_scope: field.field_scope,
+        default_label: field.default_label,
+        technical_name: field.technical_name,
+        field_type: field.field_type,
+        dropdown_options: field.dropdown_options,
+      }));
+      const HeaderString = fields_data
+        .filter((field) => field.field_scope.toUpperCase() === "HEADER")
+        .map((field) => `${field.default_label} (${field.technical_name})`)
+        .join(", ");
+      const ItemString = fields_data
+        .filter((field) => field.field_scope.toUpperCase() === "ITEM")
+        .map((field) => `${field.default_label} (${field.technical_name})`)
+        .join(", ");
+
+      const prompt = `Extract structured data from the following text. Translate any non-English field names to English. Then, map the extracted data to the corresponding JSON structure using the provided field definitions.
+
+- Use the following string as the source text: 
+###IMPORTANT Provide output in JSON format only, without any explanations or additional text. The JSON should have two main sections: **Header** and **Items**.
+
+- Use this string to determine the correct field names for the **Header** section:  
+${HeaderString}
+
+- Use this string to determine the correct field names for the **Items** section:  
+${ItemString}
+
+**Instructions:**
+1. Identify and extract relevant fields from the source text.
+2. Translate field names into English where necessary.
+3. Map the extracted values to the correct fields from ${HeaderString} and ${ItemString} and provide output as JSON
+4. If anything is not in english translate it to english and then map to the correct field. If you cannot find a value for a field, use an empty string as the value.`; // Truncate to 10k chars
+
+      const result = await SQLFile.getClaudeResponse(prompt, contentBlocks);
+      const jsonMatch = result.match(/```json([\s\S]*?)```/);
+      const jsonObject = jsonMatch ? JSON.parse(jsonMatch[1]) : {};
+      console.log("Extracted JSON Object:", jsonObject);
+      const clean = result.replace(/```(?:json)?\s*([\s\S]*?)```/, "$1").trim();
+      let parsedJson;
+      try {
+        parsedJson = JSON.parse(clean);
+      } catch (err) {
+        throw new Error("Failed to parse JSON:");
+      }
+
+      const sealField = (val) => {
+        const fallbackValue =
+          val === null || val === undefined ? "" : String(val);
+        return {
+          value: fallbackValue,
+          ai_hash: generateFieldHash(fallbackValue),
+        };
+      };
+      const dynamic_header_data = {};
+      if (parsedJson.Header) {
+        for (const [fieldName, fieldValue] of Object.entries(
+          parsedJson.Header,
+        )) {
+          dynamic_header_data[fieldName] = sealField(fieldValue);
+        }
+      }
+      let dynamic_items_data = [];
+      if (Array.isArray(parsedJson.Items)) {
+        dynamic_items_data = parsedJson.Items.map((itemRow, index) => {
+          const securedRow = {};
+          securedRow.id = itemRow.id || `${Date.now()}_${index}`;
+
+          for (const [fieldName, fieldValue] of Object.entries(itemRow)) {
+            if (fieldName === "id") continue;
+            securedRow[fieldName] = sealField(fieldValue);
+          }
+          return securedRow;
+        });
+      }
+      return {
+        messageType: "S",
+        data: { dynamic_header_data, dynamic_items_data },
+      };
+    } catch (error) {
+      return { messageType: "E", message: error.message };
     }
   },
 };

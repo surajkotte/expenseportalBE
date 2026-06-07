@@ -17,7 +17,7 @@ import { router as put_router } from "./routes/put_route.js";
 import get_router from "./routes/get_routes.js";
 import post_router from "./routes/post_route.js";
 import dbManager from "./Database/SQLConnection.js";
-
+import extractionWorker from "./workers/worker.js";
 async function initializeDatabase() {
   try {
     await dbManager.connect();
