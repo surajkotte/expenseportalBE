@@ -3,6 +3,7 @@ import {
   PutObjectCommand,
   GetObjectCommand,
 } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import dotenv from "dotenv";
 dotenv.config();
 export const s3 = new S3Client({
@@ -26,7 +27,17 @@ export const uploadToS3 = async (fileName, fileContent, fileType) => {
     const command = new PutObjectCommand(params);
     const response = await s3.send(command);
     const internalPath = fileName;
-    const httpUrl = `${process.env.AMAZON_S3_ENDPOINT}/${process.env.AMAZON_S3_BUCKET_NAME}/${fileName}`;
+    const getParams = {
+      Bucket: process.env.AMAZON_S3_BUCKET_NAME,
+      Key: fileName,
+    };
+    const httpUrl = await getSignedUrl(
+      s3,
+      new GetObjectCommand(getParams),
+      {
+        expiresIn: 3600, // Valid for 1 hour
+      },
+    );
     return { internalPath, httpUrl };
   } catch (err) {
     console.error("Error uploading file to S3:", err);
@@ -51,4 +62,4 @@ export const getBase64FromS3 = async (fileKey) => {
       message: error?.message || "Error fetching file from S3",
     };
   }
-}
+};

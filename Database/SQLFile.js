@@ -17,7 +17,7 @@ export const SQLFile = {
       const response = await anthropic.messages.create({
         model: "claude-sonnet-4-20250514",
         max_tokens: 20000,
-        temperature: 1,
+        temperature: 0.5,
         system: prompt,
         messages: [{ role: "user", content: contentBlocks }],
       });
@@ -306,11 +306,31 @@ ${ItemString}
 2. Translate field names into English where necessary.
 3. Map the extracted values to the correct fields from ${HeaderString} and ${ItemString} and provide output as JSON
 4. If anything is not in english translate it to english and then map to the correct field. If you cannot find a value for a field, use an empty string as the value.`; // Truncate to 10k chars
+      const prompt2 = `You are an expert data extraction assistant for an expense management portal. Your primary function is to extract structured data from unstructured receipt or invoice text, translate it to English, and map it to a specific JSON schema.
 
-      const result = await SQLFile.getClaudeResponse(prompt, contentBlocks);
+**CORE INSTRUCTIONS:**
+1. **Extract:** Scan the user-provided source text and identify all relevant expense information.
+2. **Translate:** Translate any non-English field names, line items, or descriptive values into English.
+3. Make sure to extract all the items. 
+4. Some times quantity is in item descriptions so check carefully and extract
+5. Convert all amount to EUR. Do necessary amount conversions if invoice contains other currencies
+6. **Map:** Map the extracted values to the exact keys provided in the schemas below.
+7. **Missing Values:** If a value for a required schema field is not present in the text, assign an empty string ("") to that key. Do not omit the key.
+8. **Structure:** Create a JSON object with exactly two main keys: "Header" (containing a single object) and "Items" (containing an array of objects).
+
+**OUTPUT CONSTRAINTS:**
+- Return ONLY valid JSON. 
+- Do NOT include any explanations, conversational text, greetings, or sign-offs.
+
+**SCHEMAS TO USE:**
+- Use this string to determine the correct field names for the **Header** section:  
+${HeaderString}
+
+- Use this string to determine the correct field names for the **Items** section:  
+${ItemString}`;
+      const result = await SQLFile.getClaudeResponse(prompt2, contentBlocks);
       const jsonMatch = result.match(/```json([\s\S]*?)```/);
       const jsonObject = jsonMatch ? JSON.parse(jsonMatch[1]) : {};
-      console.log("Extracted JSON Object:", jsonObject);
       const clean = result.replace(/```(?:json)?\s*([\s\S]*?)```/, "$1").trim();
       let parsedJson;
       try {
@@ -324,7 +344,7 @@ ${ItemString}
           val === null || val === undefined ? "" : String(val);
         return {
           value: fallbackValue,
-          ai_hash: generateFieldHash(fallbackValue),
+          oHash: generateFieldHash(fallbackValue),
         };
       };
       const dynamic_header_data = {};
@@ -354,6 +374,108 @@ ${ItemString}
       };
     } catch (error) {
       return { messageType: "E", message: error.message };
+    }
+  },
+  async submitDraft(req, res) {
+    try {
+      const { headerData, itemsData } = req.body.data;
+
+      let updated_header = [];
+      let updated_items = [];
+      let update_state = "";
+      if (headerData?.length > 0) {
+        updated_header = headerData.map((data) => {
+          const currentValue = data?.value || "";
+
+          if (data?.oHash && currentValue === "") {
+            return { ...data, value_updated: "X" };
+          } else if (!data?.oHash && currentValue) {
+            const newHash = generateFieldHash(currentValue);
+            update_state = "X";
+            return {
+              ...data,
+              value_updated: "X",
+              oHash: newHash,
+              nHash: newHash,
+            };
+          } else {
+            const nHash = generateFieldHash(currentValue);
+            if (nHash === data?.oHash) {
+              return { ...data, nHash: nHash, value_updated: "" };
+            } else {
+              update_state = "X";
+              return {
+                ...data,
+                value_updated: "X",
+                nHash: nHash,
+              };
+            }
+          }
+        });
+      }
+      if (itemsData?.length > 0) {
+        updated_items = itemsData.map((item) => {
+          const processedItem = {};
+          Object.entries(item).forEach(([key, val]) => {
+            if (val && typeof val === "object" && "value" in val) {
+              const currentValue = val.value || "";
+
+              if (val.oHash && currentValue === "") {
+                processedItem[key] = { ...val, value_updated: "X" };
+              } else if (!val.oHash && currentValue) {
+                const newHash = generateFieldHash(currentValue);
+                update_state = "X";
+                processedItem[key] = {
+                  ...val,
+                  value_updated: "X",
+                  oHash: newHash,
+                  nHash: newHash,
+                };
+              } else {
+                const nHash = generateFieldHash(currentValue);
+                console.log(val);
+                if (nHash === val.oHash) {
+                  processedItem[key] = {
+                    ...val,
+                    nHash: nHash,
+                    value_updated: "",
+                  };
+                } else {
+                  update_state = "X";
+                  processedItem[key] = {
+                    ...val,
+                    value_updated: "X",
+                    nHash: nHash,
+                  };
+                }
+              }
+            } else {
+              processedItem[key] = val;
+            }
+          });
+
+          return processedItem;
+        });
+      }
+      if (update_state) {
+        res.status(200).json({
+          messageType: "W",
+          data: {
+            headerData: updated_header,
+            itemsData: updated_items,
+          },
+        });
+      } else {
+        res.status(200).json({
+          messageType: "S",
+          data: {
+            headerData: updated_header,
+            itemsData: updated_items,
+          },
+        });
+      }
+    } catch (error) {
+      res.status(400).json({ messageType: "E", message: error.message });
     }
   },
 };

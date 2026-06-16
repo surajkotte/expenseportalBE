@@ -25,7 +25,8 @@ const extractionWorker = new Worker(
 extractionWorker.on("completed", (job) => {
   console.log("in completed event");
   const returnValue = job.returnvalue;
-  console.log(job.returnvalue);
+  returnValue.extracted_data["s3path"] = job.data.s3path;
+  returnValue.extracted_data["count"] = job.data.count;
   const userConnection = activeConnections.get(returnValue.sessionId);
   userConnection.write(
     `data: ${JSON.stringify(returnValue.extracted_data)}\n\n`,

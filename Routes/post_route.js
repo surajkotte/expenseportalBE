@@ -57,7 +57,7 @@ post_router.post(
         message: "No file uploaded",
       });
     }
-    const info = uploadedFiles.map(async (fileInfo) => {
+    const info = uploadedFiles.map(async (fileInfo, index) => {
       const fileBuffer = fs.readFileSync(fileInfo.path);
       const base64Data = fileBuffer.toString("base64");
       let ext = path.extname(fileInfo.originalname).toLowerCase();
@@ -81,7 +81,7 @@ post_router.post(
       }
       const uploadResponse = await uploadToS3(
         fileInfo?.filename,
-        base64Data,
+        fileBuffer,
         fileInfo?.mimetype,
       );
       await extractionQueue.add(
@@ -93,6 +93,7 @@ post_router.post(
           filedata: base64Data,
           s3path: uploadResponse?.httpUrl,
           contentType: fileInfo?.mimetype,
+          count: index + 1,
         },
         // {
         //   attempts: 3,
@@ -123,5 +124,13 @@ post_router.get("/stream", (req, res) => {
     res.end();
   });
 });
+
+post_router.post(
+  "/draft/submit",
+  async (req, res, next) => {
+    next();
+  },
+  SQLFile.submitDraft,
+);
 
 export default post_router;
