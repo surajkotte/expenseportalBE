@@ -1,46 +1,61 @@
 **Expense Portal**
-Autonomous AI Invoice Processor, Layout Memory & Conversational Agent**
+**AI-Powered Enterprise Expense & Receipt Management Portal**
 
 An end-to-end automated invoice processing platform. It combines zero-touch background email ingestion, **visual layout fingerprinting with persistent prompt memory**, an Agentic AI chat interface**, and real-time API cost tracking.
 
 ---
  Key Features
 
-1. Visual Fingerprinting & Prompt Memory:** Save custom extraction prompts mapped directly to a vendor’s specific invoice layout. When a matching layout is uploaded in the future, the system recognizes the geometry and instantly injects your saved prompt for tailored, 100% accurate extraction.
-2. Configurable Schema Engine: Fully customize exactly what fields the AI extracts. Dynamically configure Header fields (Invoice ID, Date, Tax ID) and Line-Item tables (Quantity, Description, Unit Price, SKU) through a visual schema builder.
-3. Configurable Multi-Language Translation: Seamlessly process international invoices. The system automatically detects the source language and translates extracted field content into your target accounting language on the fly.
-4. Agentic Document Chat Interface:* A multi-turn conversational UI docked alongside the document. Don't just extract data—interrogate it. Ask the AI to verify line-item math, explain obscure surcharge codes, or re-calculate totals in a different currency.
-5. Universal AI JSON Extraction: Plug in any LLM endpoint (OpenAI, Anthropic, local Ollama) to convert unstructured PDFs/Images into strict, pre-defined JSON schemas.
-6. Zero-Touch IMAP Automation: A background daemon watches configured finance inboxes, strips incoming invoice attachments, queues them, and pushes extracted JSON to your backend without human intervention.
-7. Resilient Task Queues: Built-in queuing for email ingestion featuring exponential backoff, auto-retries**, and Dead-Letter-Queue (DLQ) routing for corrupted attachments.
-8. Token & Spend Dashboard: Keep AI overhead transparent. Real-time tracking of USD/token spend per extraction, queue cycle, and individual chat session.
+1. **Smart Receipt Parsing:** Upload crumpled receipts, digital PDFs, or screenshots. The system uses vision-capable AI to extract Merchant, Date, Tax, and Line Items with high accuracy.
+2. **Multi-Expense Aggregation:** Users can drop 10 receipts into the portal at once. The system processes them in parallel and stitches them together into a unified "Expense Report" for easy review.
+3. **Configurable Extraction Schemas:** Finance teams can define exactly what data is required. Dynamically configure extraction fields (e.g., enforcing "Project Code" or "Cost Center" extraction) via a UI-driven schema engine.
+4. **Auto-Translation & Localization:** Built for global teams. The AI automatically detects foreign receipts (e.g., a taxi receipt in German) and translates the line items and categories into the company's native language.
+5. **Agnostic Multi-LLM Router:** Cost-optimized AI. Route simple receipts through faster, cheaper models (like `gpt-4o-mini` or `claude-3-haiku`) while escalating blurry or complex multi-page hotel folios to heavy-duty reasoning models.
+6. **Policy Flagging (Roadmap):** Automated auditing to catch out-of-policy expenses (e.g., flagging meals over $100 or non-compliant alcohol purchases) before human approval.
+7. **Audit Trails & AI Override Explanations**: Complete data provenance. The system strictly tracks the diff between the original AI-extracted JSON and the user's final submission. If an employee alters a machine-read field (e.g., changing a $50 receipt to $500), the UI immediately intercepts the submission and requires a written justification for the auditor.
+8. **Dynamic Approval Workflows**: Configurable routing rules based on expense thresholds and categories. Automatically approve low-risk items (e.g., meals under $20), while routing high-value items or overridden fields to specific managerial queues before ERP ingestion.
 
 ---
 
 System Architecture
 
 ```
-                                [ Finance Inbox (IMAP) ]
-                                           │
-                                  (Strips Attachment)
-                                           │
-  [ React.js Web UI ] ──(Upload)──► [ AWS S3 Bucket ] ◄──(Save)── [ IMAP Daemon ]
-          │                                │
-      (Chat/RAG)                           │ (Passes S3 Object Key)
-          │                                ▼
-          │                      ┌───────────────────┐
-          │                      │  BullMQ (Redis)   │
-          │                      └────────┬──────────┘
-          │                               │ (Worker Pulls Job)
-          ▼                               ▼
-    [ Agentic AI ]              [ Layout Recognizer ] ──(Match?)──► [ MySQL DB ]
-          ▲                               │                                │
-          │                               ▼                                │
-          └──────────────────── [ Payload Builder ] ◄──(Injects Model, ────┘
-                                          │             Prompt, Schema & Lang)
-                                          ▼
-                               [ Configured LLM Router ]
-                           (OpenAI / Anthropic / Ollama)
-                                          │ (Extracted JSON & Translated)
-                                          ▼
-                            [ Default Backend Ingestion ]
+[ Employee Web / Mobile UI ]
+           │
+           ├─ 1. (Creates Draft Report)
+           │
+           └─ 2. (Bulk Uploads Receipts)
+                   │
+                   ▼
+          [ AWS S3 Bucket ] ◄───────── (Secure Blob Storage)
+                   │
+                   ▼
+          ┌───────────────────┐
+          │  BullMQ (Redis)   │ ◄───── (Parallel Task Queue)
+          └────────┬──────────┘
+                   │ 
+                   ▼
+        [ Configured LLM Router ] ───► [ Schema DB & Translation ]
+                   │ 
+                   ▼ (Returns Extracted JSON)
+                   │
+        [ Expense Report Aggregator ]
+                   │
+                   ▼
+  [ Employee Reviews & Adjusts Data ]
+                   │
+                   ├─► (Data Changed?) ──Yes──► [ Prompts for Explanation ]
+                   │                                      │
+                   No                                     │
+                   │                                      ▼
+                   └──────────────────────────► [ Audit Logger DB ]
+                                                          │
+                                                          ▼
+                                            [ Rule-Based Approval Engine ]
+                                                          │
+                                            ┌─────────────┴─────────────┐
+                                            │                           │
+                                      (Auto-Approve)             (Manager Queue)
+                                            │                           │
+                                            ▼                           ▼
+                              [ ERP / HR System Ingestion ] ◄───────────┘
